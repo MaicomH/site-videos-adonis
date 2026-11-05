@@ -1,0 +1,41 @@
+{{-- Cabeçalho do site: aparece em todas as páginas logadas --}}
+<header class="p-3 mb-3 border-bottom">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 me-lg-4 link-body-emphasis text-decoration-none fw-bold">
+        MeuSite
+      </a>
+
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="/" class="nav-link px-2 link-secondary">Início</a></li>
+        <li><a href="#" class="nav-link px-2 link-body-emphasis">Usuários</a></li>
+        <li><a href="#" class="nav-link px-2 link-body-emphasis">Vídeos</a></li>
+      </ul>
+
+      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+        <input type="search" class="form-control" placeholder="Procurar" aria-label="Procurar">
+      </form>
+
+      <div class="dropdown text-end">
+        <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="" alt="Avatar" width="32" height="32" class="rounded-circle">
+        </a>
+        <ul class="dropdown-menu text-small">
+          <li><a class="dropdown-item" href="#">Estúdio</a></li>
+          <li><a class="dropdown-item" href="#">Configurações</a></li>
+          <li><a class="dropdown-item" href="#">Perfil</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li>
+            <form action="/logout" method="POST" class="d-inline">
+              {{ csrfField() }}
+              <button type="submit" class="dropdown-item text-danger">Deslogar</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>

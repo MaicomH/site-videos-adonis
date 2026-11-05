@@ -1,6 +1,6 @@
 @layouts.auth()
-  <h1 class="auth__title">Create your account</h1>
-  <p class="auth__sub">Start building with the starter kit.</p>
+  <h1 class="auth__title">Crie sua conta</h1>
+  <p class="auth__sub">Começe a assitir e criar os seus videos</p>
   @form({
     route: 'new_account.store',
     method: 'POST',
@@ -9,8 +9,8 @@
     'x-on:submit': 'submitting = true',
   })
     @field.root({ name: 'fullName' })
-      @!field.label({ text: 'Full name' })
-      @!input.control({ autocomplete: 'name', placeholder: 'Ada Lovelace' })
+      @!field.label({ text: 'Nome Completo' })
+      @!input.control({ autocomplete: 'name', placeholder: 'Maicom Howie' })
       @!field.error()
     @end
     @field.root({ name: 'email' })
@@ -18,12 +18,12 @@
       @!input.control({
         type: 'email',
         autocomplete: 'email',
-        placeholder: 'you@example.com',
+        placeholder: 'voce@exemplo.com',
       })
       @!field.error()
     @end
     @field.root({ name: 'password' })
-      @!field.label({ text: 'Password' })
+      @!field.label({ text: 'Senha' })
       @!input.control({
         type: 'password',
         autocomplete: 'new-password',
@@ -32,7 +32,7 @@
       @!field.error()
     @end
     @field.root({ name: 'passwordConfirmation' })
-      @!field.label({ text: 'Confirm password' })
+      @!field.label({ text: 'Confirmar senha' })
       @!input.control({
         type: 'password',
         autocomplete: 'new-password',
@@ -41,21 +41,21 @@
       @!field.error()
     @end
     @!button({
-      text: 'Create account',
+      text: 'Criar Conta',
       type: 'submit',
       block: true,
       style: 'margin-top: 4px;',
       'x-bind:disabled': 'submitting',
-      'x-text': "submitting ? 'One moment…' : 'Create account'",
+      'x-text': "submitting ? 'One moment…' : 'Criar Conta'",
     })
   @end
 
   <p class="auth__foot">
     
-    Already have an account?
+    Já tem conta?
 
     @link({ route: 'session.create', class: 'il' })
-      Sign in
+      Entrar
     @end
   </p>
 @end

@@ -1,0 +1,73 @@
+@layouts.site({ title: 'Vídeos' })
+@let(videos = [
+{
+title: 'Vídeo 1',
+channel: 'Canal A',
+description: 'Primeiro vídeo.',
+youtubeId: 'dQw4w9WgXcQ'
+},
+{
+title: 'Vídeo 2',
+channel: 'Canal B',
+description: 'Segundo vídeo.',
+youtubeId: 'M7lc1UVf-VE'
+}
+])
+
+<h1 class="h3 mt-4 mb-3">Vídeos</h1>
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 mb-5">
+  @each(video in videos)
+  <div class="col">
+    <div class="card h-100">
+      <!-- Container do vídeo com a thumbnail -->
+      <div class="ratio ratio-16x9 bg-dark position-relative video-container" data-video-id="{{ video.youtubeId }}">
+
+        <!-- Imagem da Thumbnail do YouTube (Alta Qualidade) -->
+        <img src="https://img.youtube.com/vi/{{ video.youtubeId }}/hqdefault.jpg" alt="{{ video.title }}"
+          class="w-100 h-100 object-fit-cover cursor-pointer" />
+
+        <!-- Botão de Play customizado por cima -->
+        <button
+          class="position-absolute top-50 start-50 translate-middle btn btn-danger rounded-circle p-3 d-flex align-items-center justify-content-center shadow"
+          style="width: 60px; height: 60px;" aria-label="Assistir vídeo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-play-fill"
+            viewBox="0 0 16 16">
+            <path
+              d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.693-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
+          </svg>
+        </button>
+
+      </div>
+
+      <div class="card-body">
+        <h2 class="h6 card-title">{{ video.title }}</h2>
+        <p class="card-text text-body-secondary small">{{ video.description }}</p>
+      </div>
+      <div class="card-footer small text-body-secondary">{{ video.channel }}</div>
+    </div>
+  </div>
+  @end
+</div>
+
+<!-- Script para trocar a thumbnail pelo Iframe ao clicar -->
+<script>
+  document.querySelectorAll('.video-container').forEach(container => {
+    container.addEventListener('click', function () {
+      const videoId = this.getAttribute('data-video-id');
+
+      // Cria o iframe já com autoplay ativado
+      const iframe = document.createElement('iframe');
+      iframe.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1`);
+      iframe.setAttribute('title', 'YouTube video player');
+      iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+      iframe.setAttribute('allowfullscreen', '');
+      iframe.className = 'w-100 h-100 border-0';
+
+      // Limpa o conteúdo atual (imagem + botão) e insere o iframe
+      this.innerHTML = '';
+      this.appendChild(iframe);
+    });
+  });
+</script>
+@end

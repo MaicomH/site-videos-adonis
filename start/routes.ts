@@ -11,8 +11,6 @@ import { middleware } from '#start/kernel'
 import { controllers } from '#generated/controllers'
 import router from '@adonisjs/core/services/router'
 
-router.on('/').render('pages/home').as('home')
-
 router
   .group(() => {
     router.get('signup', [controllers.NewAccount, 'create'])
@@ -25,6 +23,7 @@ router
 
 router
   .group(() => {
+    router.on('/').render('pages/videos/index').as('home')
     router.on('/dashboard').render('pages/dashboard').as('dashboard')
     router.post('logout', [controllers.Session, 'destroy'])
   })
